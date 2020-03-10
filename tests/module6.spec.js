@@ -40,8 +40,8 @@ function getFunctionNames(codeString) {
   return names;
 }
 
-describe("Module 5", () => {
-  it("@create-async-fetch-movies", () => {
+describe("Module 6", () => {
+  it("should have an `asyncFetchBooks()` method defined @create-async-fetch-books", () => {
     let file = fs.readFileSync(
       path.join(process.cwd(), "src/services.js"),
       "utf8"
@@ -50,9 +50,9 @@ describe("Module 5", () => {
     const names = getFunctionNames(res);
 
     const allExportedFunctions = [];
-    expect(names.includes("asyncFetchMovies")).to.equal(
+    expect(names.includes("asyncFetchBooks")).to.equal(
       true,
-      "You should define a function named `asyncFetchMovies` in services.js"
+      "You should define a function named `asyncFetchBooks` in services.js"
     );
 
     walk.simple(res, {
@@ -61,7 +61,7 @@ describe("Module 5", () => {
       }
     });
     const asyncFunc = _.find(allExportedFunctions, val => {
-      return _.get(val, "declaration.id.name", "") === "asyncFetchMovies";
+      return _.get(val, "declaration.id.name", "") === "asyncFetchBooks";
     });
     expect(asyncFunc).to.not.equal(false);
     expect(_.get(asyncFunc, "declaration.async", false)).to.equal(
@@ -70,7 +70,7 @@ describe("Module 5", () => {
     );
   });
 
-  it("@add-try-catch-to-async-fetch-movies", () => {
+  it("should have a `try/catch` block defined in the body @add-try-catch-to-fetch-books", () => {
     let file = fs.readFileSync(
       path.join(process.cwd(), "src/services.js"),
       "utf8"
@@ -83,12 +83,12 @@ describe("Module 5", () => {
       }
     });
     const asyncFunc = _.find(allExportedFunctions, val => {
-      return _.get(val, "declaration.id.name", "") === "asyncFetchMovies";
+      return _.get(val, "declaration.id.name", "") === "asyncFetchBooks";
     });
     const body = _.get(asyncFunc, "declaration.body.body[0]", {});
     expect(body.type).to.equal(
       "TryStatement",
-      "Add a `try/catch` block to the body of `asyncFetchMovies()`"
+      "Add a `try/catch` block to the body of `asyncFetchBooks()`"
     );
     expect(_.get(body, "handler.param.name", "")).to.equal(
       "error",
@@ -96,7 +96,7 @@ describe("Module 5", () => {
     );
   });
 
-  it("@await-fetch-movies", () => {
+  it("should await the fetch promise @await-fetch-books", () => {
     let file = fs.readFileSync(
       path.join(process.cwd(), "src/services.js"),
       "utf8"
@@ -109,7 +109,7 @@ describe("Module 5", () => {
       }
     });
     const asyncFunc = _.find(allExportedFunctions, val => {
-      return _.get(val, "declaration.id.name", "") === "asyncFetchMovies";
+      return _.get(val, "declaration.id.name", "") === "asyncFetchBooks";
     });
     const tryBlock = _.get(asyncFunc, "declaration.body.body[0]", {});
     const catchBlock = _.get(asyncFunc, "declaration.body.body[0].handler", {});
