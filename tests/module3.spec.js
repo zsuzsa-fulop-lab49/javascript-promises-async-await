@@ -15,22 +15,24 @@ describe("Module 3", () => {
 
   it("you should have a file named 'movies.json' in the src/data directory @create-movies-json", () => {
     let file = fs.existsSync(path.join(process.cwd(), "src/data/movies.json"));
-    const res = require("../src/data/movies.json");
     expect(file).to.not.equal(
       false,
       "It seems you have not created the `movies.json` directory in `src/data`."
     );
+    if (file) {
+      const movies = require("../src/data/movies.json");
 
-    expect(res.length).to.equal(
-      3,
-      `It looks like movies.json is missing some data. Please make sure it holds this content: ${JSON.stringify(
-        [
-          { title: "Die Hard" },
-          { title: "Home Alone" },
-          { title: "Love Actually" }
-        ]
-      )}`
-    );
+      expect(movies.length).to.equal(
+        3,
+        `It looks like movies.json is missing some data. Please make sure it holds this content: ${JSON.stringify(
+          [
+            { title: "Die Hard" },
+            { title: "Home Alone" },
+            { title: "Love Actually" }
+          ]
+        )}`
+      );
+    }
   });
 
   it("index.js should import the movies json @import-movies", () => {
