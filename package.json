@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "deploy:github-pages": "git push origin master:gh-pages",
     "test": "npm-run-all -s test:code",
     "test:code": "mocha tests/**",
     "test-watch": "npm-run-all  -p -r test-watch:code",
@@ -14,7 +13,10 @@
     "test:module3": "mocha tests/module3.spec.js",
     "test:module4": "mocha tests/module4.spec.js",
     "test:module5": "mocha tests/module5.spec.js",
-    "test:module6": "mocha tests/module6.spec.js"
+    "test:module6": "mocha tests/module6.spec.js",
+    "test:module7": "mocha tests/module7.spec.js",
+    "test:module8": "mocha tests/module8.spec.js",
+    "test:module9": "mocha tests/module9.spec.js"
   },
   "author": "Marques Woodson",
   "license": "MIT",
@@ -40,7 +42,6 @@
     ]
   },
   "dependencies": {
-    "core-js": "^2.6.11",
     "lodash": "^4.17.15"
   }
 }
