@@ -157,7 +157,6 @@ describe('Module 8', () => {
             _.get(node, 'declarations[0].id.name', '') ===
             'getBooksOrMoviesAsync'
           ) {
-            console.dir(node, dirOpts);
             func.node = node;
           }
         },
@@ -172,7 +171,6 @@ describe('Module 8', () => {
           if (
             _.get(node, 'elements[0].callee.name', '') === 'asyncFetchBookss'
           ) {
-            console.dir(node, dirOpts);
             func.misspelledFunction = node;
           }
         },
