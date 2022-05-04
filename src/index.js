@@ -1,12 +1,19 @@
 const fetchWithTimeout = require("./services/fetchWithTimeout");
+const fetchMovies = require("./services/fetchMovies");
+const fetchBooks = require("./services/fetchBooks");
+const movies = require("./services/movies.json");
 
-export const fetchMovies = () => {
-  const resolveFunction = () => movies;
-  return fetchWithTimeout(1000).then(resolveFunction);
+const getBooksAndMovies = () => {
+  return Promise.all([fetchBooks(), fetchMovies()])
+    .then(([books, movies]) => ({
+      books,
+      movies,
+    }))
+    .catch((error) => console.log("Error fetching books and movies", error));
 };
 
-const moviePromise = fetchMovies();
+const getBooksAndMoviesPromise = getBooksAndMovies();
 
-moviePromise.then((results) => {
-  console.log(results);
-});
+getBooksAndMoviesPromise.then((results) =>
+  console.log("getBooksAndMoviesPromise", results)
+);
