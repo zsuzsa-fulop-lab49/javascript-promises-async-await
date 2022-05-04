@@ -1,4 +1,4 @@
-const movies = require("./services/movies.json");
+const movies = require("./data/movies.json");
 import { fetchWithTimeout } from "./services";
 
 export const fetchMovies = () => {
